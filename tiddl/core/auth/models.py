@@ -1,39 +1,39 @@
-from typing import Optional
+from typing import Optional, Any
 from pydantic import BaseModel
 
 
 class AuthResponse(BaseModel):
     class User(BaseModel):
-        userId: int
-        email: str
-        countryCode: str
-        fullName: Optional[str]
-        firstName: Optional[str]
-        lastName: Optional[str]
-        nickname: Optional[str]
-        username: str
-        address: Optional[str]
-        city: Optional[str]
-        postalcode: Optional[str]
-        usState: Optional[str]
-        phoneNumber: Optional[str]
-        birthday: Optional[int | str]
-        channelId: int
-        parentId: int
-        acceptedEULA: bool
-        created: int | str
-        updated: int | str
-        facebookUid: Optional[int] = None
-        appleUid: Optional[str] = None
-        googleUid: Optional[str] = None
-        accountLinkCreated: bool
-        emailVerified: bool
-        newUser: bool
+        userId: Optional[int] = None
+        email: Optional[str] = None
+        countryCode: str = "US"
+        fullName: Optional[str] = None
+        firstName: Optional[str] = None
+        lastName: Optional[str] = None
+        nickname: Optional[str] = None
+        username: Optional[str] = None
+        address: Optional[str] = None
+        city: Optional[str] = None
+        postalcode: Optional[str] = None
+        usState: Optional[str] = None
+        phoneNumber: Optional[str] = None
+        birthday: Optional[Any] = None
+        channelId: Optional[int] = None
+        parentId: Optional[int] = None
+        acceptedEULA: Optional[bool] = None
+        created: Optional[Any] = None
+        updated: Optional[Any] = None
+        facebookUid: Optional[Any] = None
+        appleUid: Optional[Any] = None
+        googleUid: Optional[Any] = None
+        accountLinkCreated: Optional[bool] = None
+        emailVerified: Optional[bool] = None
+        newUser: Optional[bool] = None
 
     user: User
-    scope: str
-    clientName: str
-    token_type: str
+    scope: Optional[str] = None
+    clientName: Optional[str] = None
+    token_type: Optional[str] = None
     access_token: str
     expires_in: int
     user_id: int

@@ -6,8 +6,6 @@ from xml.etree.ElementTree import fromstring
 
 from tiddl.core.api.models import TrackStream, VideoStream
 
-DOLBY_CODECS = ["eac3", "ac4"]
-
 
 def parse_manifest_XML(xml_content: str):
     """
@@ -80,12 +78,12 @@ def parse_track_stream(track_stream: TrackStream) -> tuple[list[str], str]:
 
     if codecs == "flac":
         file_extension = ".flac"
-        if track_stream.audioQuality == "HI_RES_LOSSLESS":
+        if track_stream.audioQuality == "HI_RES_LOSSLESS" or track_stream.manifestMimeType == "application/dash+xml":
             file_extension = ".m4a"
-    elif codecs.startswith("mp4") or codecs in DOLBY_CODECS:
+    elif codecs.startswith("mp4"):
         file_extension = ".m4a"
     else:
-        raise ValueError(f"Unknown codecs `{codecs}` (trackId {track_stream.trackId}")
+        raise ValueError(f"Unknown codecs `{codecs}` (trackId {track_stream.trackId})")
 
     return urls, file_extension
 
